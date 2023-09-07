@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 /**
- * main - Prints out the last part of a quote in the standard error.
- * Return: 1 if success.
+ * main- Entry point
+ * @void: parameter
+ * Return: 1 (success)
  **/
 int main(void)
 {
