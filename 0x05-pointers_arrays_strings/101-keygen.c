@@ -1,35 +1,48 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
-
-// Function to generate a random integer in a given range
-int randomInt(int min, int max) {
-    return min + rand() % (max - min + 1);
+/**
+ * checksum - executes checksum
+ * @s: input char
+ * Return: checksum
+ */
+unsigned long checksum(char *s)
+{
+unsigned long sum = 0;
+while (*s != 0)
+{
+	sum += *s;
+	s++;
 }
+return (sum);
+}
+/**
+ * main - prints password for crakme
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+	char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQSTUVWXYZ";
+	char s[33];
+	unsigned long sum;
+	int i, flag = 0;
 
-int main() {
-    srand(time(NULL));  // Seed the random number generator with the current time
-
-    // Define the character set for the password
-    const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-    // Define the length of the password (adjust as needed)
-    const int passwordLength = 12;
-
-    char password[passwordLength + 1];  // +1 for the null terminator
-
-    for (int i = 0; i < passwordLength; i++) {
-        // Generate a random index to select a character from the charset
-        int index = randomInt(0, sizeof(charset) - 1);
-
-        // Assign the selected character to the password
-        password[i] = charset[index];
-    }
-
-    password[passwordLength] = '\0';  // Null-terminate the password
-
-    // Print the generated password
-    printf("%s\n", password);
-
-    return 0;
+	srand(time(NULL));
+	while (flag == 0)
+	{
+		for (i = 0; i < 33; i++)
+		{
+			s[i] = alpha[rand() % (sizeof(alpha) - 1)];
+		}
+		s[i] = '\0';
+		sum = checksum(s);
+		if (sum == 2772)
+		{
+			flag = 1;
+			printf("%s", s);
+		}
+	}
+return (0);
 }
