@@ -27,7 +27,7 @@ size_t print_listint_safe(const listint_t *head)
 				return (count);
 			}
 			current = current->next;
-			new_n++;
+			new_node++;
 		}
 		if (!head)
 			exit(98);
